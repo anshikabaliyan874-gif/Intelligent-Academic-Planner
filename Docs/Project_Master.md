@@ -177,3 +177,145 @@ Then connect frontend with backend.
 Never sacrifice understanding for speed.
 
 Use AI as accelerator, not replacement for thinking.
+
+
+# Intelligent Academic Planner
+
+## Project Information
+
+Project Name: Intelligent Academic Planner
+
+Project Type: BCA Major Project
+
+Status: In Development
+
+---
+
+## Version History
+
+### Version 1
+
+Completed:
+- Project structure created
+- Git initialized
+- GitHub repository connected
+- Homepage created
+
+Commit:
+57ea539
+
+---
+
+### Version 2
+
+Completed:
+- Create Plan page created
+- Navigation issues fixed
+- Homepage linked to Create Plan page
+- Project_Master documentation corrected
+
+Commit:
+d904cbf
+
+---
+
+## Current Screens
+
+Completed:
+- Home Page
+- Create Plan Page
+
+Pending:
+- Dashboard
+- Progress Tracker
+- Saved Plans
+- Database Integration
+- Intelligent Plan Generation
+- Adaptive Rescheduling
+
+---
+
+## Next Development Target
+
+Dashboard MVP
+### Version 3
+
+Completed:
+- Dashboard MVP created
+- System architecture visualization added
+- Task engine + decision panel introduced
+
+Current Focus:
+Dashboard system representation
+
+Next Step:
+UI refinement + backend planning (later phase)
+# Intelligent Academic Planner
+
+## PROJECT EVOLUTION SUMMARY
+
+### Phase 1 — Idea Formation
+- Identified student academic pressure problem
+- Defined goal: Intelligent Academic Planning System
+- Decided system should adapt to student workload dynamically
+
+---
+
+### Phase 2 — System Design
+- Defined system intelligence model:
+  - Study Planning Engine
+  - Adaptive Scheduling Concept
+  - Priority-Based Task System
+  - Overload Risk Analysis
+- Designed product architecture mindset (not just UI)
+
+---
+
+### Phase 3 — UI Development (Frontend MVP)
+
+#### Completed Screens:
+- Home Page (Landing UI)
+- Create Plan Page (Form-based planning system)
+- Dashboard Page (System Intelligence Simulation)
+
+#### UI Concepts Implemented:
+- System State Panel
+- Task Engine Panel
+- Pressure Engine Panel
+- Decision Engine Panel
+- Activity Tracking Panel
+
+---
+
+### Phase 4 — Development Environment Setup
+- VS Code configured
+- Git initialized
+- GitHub repository created
+- First and second commits completed successfully
+- Project pushed to GitHub successfully
+- Navigation between pages working
+
+---
+
+## CURRENT VERSION
+
+Version: V3 (UI Prototype Complete)
+
+---
+
+## CURRENT STATUS
+
+✔ Frontend Prototype Completed
+✔ Navigation Working
+✔ GitHub Version Control Active
+⚠ Backend Intelligence Not Connected Yet
+
+---
+
+## NEXT PHASE TARGET
+
+Phase 5:
+- Connect backend logic (Java)
+- Introduce real plan generation logic
+- Store plans in MySQL
+- Make dashboard dynamic
