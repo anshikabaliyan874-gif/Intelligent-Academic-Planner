@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Create Study Plan | Intelligent Academic Planner</title>
+  <link rel="stylesheet" href="../CSS/style.css" />
+</head>
+<body>
+  <div class="page-shell">
+    <header class="site-header">
+      <div class="container header-inner">
+        <a href="../HTML/index.html" class="brand">Intelligent Academic Planner</a>
+        <nav class="main-nav">
+          <a href="../HTML/index.html#home">Home</a>
+          <a href="../HTML/index.html#features">Features</a>
+          <a href="../HTML/saved-plans.html">Saved Plans</a>
+        </nav>
+        <a href="#create-plan" class="button button-primary">Create Plan</a>
+      </div>
+    </header>
+
+    <main>
+      <section class="hero plan-hero" id="create-plan">
+        <div class="container hero-grid">
+          <div class="hero-copy">
+            <span class="eyebrow">Create a Study Plan</span>
+            <h1>Build a focused plan that fits your academic goals.</h1>
+            <p class="hero-text">Use a clean, responsive form to capture your study intent, deadlines, and priorities. The planner will help you generate a structured academic schedule tailored to your workload.</p>
+            <div class="hero-actions">
+              <a href="#plan-form" class="button button-accent">Start Your Plan</a>
+              <a href="../HTML/dashboard.html" class="button button-secondary">View Dashboard</a>
+            </div>
+          </div>
+          <div class="hero-card form-summary-card">
+            <div class="hero-card-inner">
+              <p class="card-label">Plan Snapshot</p>
+              <div class="planner-summary">
+                <div>
+                  <h3>Study smarter with context</h3>
+                  <p>Enter your purpose, subjects, and available hours to generate a balanced academic plan.</p>
+                </div>
+              </div>
+              <div class="planner-metrics">
+                <div>
+                  <span>Goal</span>
+                  <p>Focused study targets</p>
+                </div>
+                <div>
+                  <span>Deadline</span>
+                  <p>End-to-end time planning</p>
+                </div>
+                <div>
+                  <span>Priority</span>
+                  <p>Rank your tasks clearly</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="container plan-form-section">
+        <div class="form-card" id="plan-form">
+          <div class="form-card-header">
+            <div>
+              <p class="eyebrow">Plan Details</p>
+              <h2>Create your custom academic plan</h2>
+              <p>Fill in the details below to generate a study plan that matches your priorities and available time.</p>
+            </div>
+          </div>
+
+          <form class="plan-form" action="#" method="post">
+            <div class="field-grid">
+              <div class="form-group">
+                <label for="purpose">Planning Purpose</label>
+                <select id="purpose" name="purpose" required>
+                  <option value="" disabled selected>Select purpose</option>
+                  <option value="semester_study">Semester Study</option>
+                  <option value="internal_exam">Internal Exam</option>
+                  <option value="external_exam">External Exam</option>
+                  <option value="revision">Revision</option>
+                  <option value="placement_preparation">Placement Preparation</option>
+                  <option value="interview_preparation">Interview Preparation</option>
+                  <option value="custom_goal">Custom Goal</option>
+                </select>
+              </div>
+
+              <div class="form-group">
+                <label for="goal-name">Goal Name</label>
+                <input id="goal-name" name="goalName" type="text" placeholder="e.g. Final Exam Revision" required />
+              </div>
+            </div>
+
+            <div class="field-grid">
+              <div class="form-group">
+                <label for="deadline">Deadline</label>
+                <input id="deadline" name="deadline" type="date" required />
+              </div>
+
+              <div class="form-group">
+                <label for="hours">Available Study Hours Per Day</label>
+                <input id="hours" name="availableHours" type="number" min="1" step="1" placeholder="10" required />
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label for="subjects">Subjects (One Per Line)</label>
+              <textarea id="subjects" name="subjects" rows="5" placeholder="List the subjects or topics you want to include in your plan" required></textarea>
+            </div>
+
+            <div class="form-group">
+              <label for="priority">Priority</label>
+              <select id="priority" name="priority" required>
+                <option value="" disabled selected>Select priority level</option>
+                <option value="low">Low</option>
+                <option value="medium">Medium</option>
+                <option value="high">High</option>
+                <option value="critical">Critical</option>
+              </select>
+            </div>
+
+            <div class="button-row">
+              <button type="submit" class="button button-primary">Generate Study Plan</button>
+              <button type="reset" class="button button-secondary">Reset Form</button>
+            </div>
+          </form>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <div class="container footer-inner">
+        <p>Intelligent Academic Planner</p>
+        <p>BCA Major Project 2026</p>
+      </div>
+    </footer>
+  </div>
+</body>
+</html>
