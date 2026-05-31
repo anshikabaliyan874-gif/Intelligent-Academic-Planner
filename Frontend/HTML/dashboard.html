@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -22,7 +22,7 @@
     </header>
 
     <main>
-      <section class="hero" aria-labelledby="dashboard-title">
+      <section class="hero section-padding" aria-labelledby="dashboard-title">
         <div class="container hero-grid">
           <div class="hero-copy">
             <h1 id="dashboard-title">Academic Dashboard</h1>
@@ -31,7 +31,7 @@
         </div>
       </section>
 
-      <section class="container" style="padding-top:2rem;">
+      <section class="container section-padding">
         <div class="form-card">
           <div class="form-card-header">
             <div>
@@ -40,26 +40,27 @@
             </div>
           </div>
 
-          <div class="field-grid" style="grid-template-columns:repeat(auto-fit, minmax(200px, 1fr)); gap:1.5rem; padding:1rem;">
+          <div class="field-grid grid-responsive card-padding">
             <div class="form-group">
-              <label style="font-weight:700; color:var(--color-primary);">Active Plan</label>
-              <p style="margin:0.5rem 0 0 0; font-size:1.1rem;">Semester Study Plan</p>
+              <label class="label-em">Active Plan</label>
+              <p class="value-em" th:text="${activePlanName}">Semester Study Plan</p>
             </div>
 
             <div class="form-group">
-              <label style="font-weight:700; color:var(--color-primary);">Current Phase</label>
-              <p style="margin:0.5rem 0 0 0; font-size:1.1rem;">Mid Semester</p>
+              <label class="label-em">Current Phase</label>
+              <p class="value-em" th:text="${currentPhaseName}">Mid Semester</p>
             </div>
 
             <div class="form-group">
-              <label style="font-weight:700; color:var(--color-primary);">Status</label>
-              <p style="margin:0.5rem 0 0 0; font-size:1.1rem; color:#10b981;">On Track</p>
+              <label class="label-em">Status</label>
+              <p class="status-text" th:text="${systemStatusText}"
+                 th:classappend="${systemStatusText == 'On Track'} ? ' status-ontrack' : (${systemStatusText == 'At Risk'} ? ' status-atrisk' : ' status-default')">On Track</p>
             </div>
           </div>
         </div>
       </section>
 
-      <section class="container" style="padding-top:2rem;">
+      <section class="container section-padding">
         <div class="form-card">
           <div class="form-card-header">
             <div>
@@ -68,41 +69,28 @@
             </div>
           </div>
 
-          <div style="padding:1rem;">
-            <ul style="list-style:none; padding:0; margin:0;">
-              <li style="margin:1rem 0; padding:0.75rem; background:#f8fafc; border-left:4px solid #ef4444; border-radius:8px;">
-                <div style="display:flex; justify-content:space-between; align-items:center;">
-                  <span style="font-weight:500;">DBMS Revision</span>
-                  <span style="background:#fee2e2; color:#991b1b; padding:0.25rem 0.75rem; border-radius:12px; font-size:0.875rem; font-weight:600;">HIGH PRIORITY</span>
-                </div>
-              </li>
-
-              <li style="margin:1rem 0; padding:0.75rem; background:#f8fafc; border-left:4px solid #f59e0b; border-radius:8px;">
-                <div style="display:flex; justify-content:space-between; align-items:center;">
-                  <span style="font-weight:500;">Java Practice</span>
-                  <span style="background:#fef3c7; color:#92400e; padding:0.25rem 0.75rem; border-radius:12px; font-size:0.875rem; font-weight:600;">MEDIUM PRIORITY</span>
-                </div>
-              </li>
-
-              <li style="margin:1rem 0; padding:0.75rem; background:#f8fafc; border-left:4px solid #94a3b8; border-radius:8px;">
-                <div style="display:flex; justify-content:space-between; align-items:center;">
-                  <span style="font-weight:500;">OS Notes</span>
-                  <span style="background:#e2e8f0; color:#1e293b; padding:0.25rem 0.75rem; border-radius:12px; font-size:0.875rem; font-weight:600;">LOW PRIORITY</span>
-                </div>
-              </li>
-
-              <li style="margin:1rem 0; padding:0.75rem; background:#f8fafc; border-left:4px solid #ef4444; border-radius:8px;">
-                <div style="display:flex; justify-content:space-between; align-items:center;">
-                  <span style="font-weight:500;">Assignment Submission</span>
-                  <span style="background:#fee2e2; color:#991b1b; padding:0.25rem 0.75rem; border-radius:12px; font-size:0.875rem; font-weight:600;">HIGH PRIORITY</span>
-                </div>
+          <div class="card-padding">
+            <ul class="task-list" th:each="task : ${activeTasks}">
+              <li class="task-item" th:classappend="${task.priority.toLowerCase() == 'high'} ? ' priority-high' : (${task.priority.toLowerCase() == 'medium'} ? ' priority-medium' : ' priority-low')">
+                <form th:action="@{/tasks/toggle-complete/{id}(id=${task.id})}" method="post" class="task-form">
+                  <div class="task-row">
+                    <label class="task-label">
+                      <input type="checkbox" name="completed" th:checked="${task.completed} ? 'checked' : null" />
+                      <span class="task-title" th:text="${task.title}">DBMS Revision</span>
+                    </label>
+                    <span class="priority-badge" th:text="${task.priority}" th:classappend="${task.priority.toLowerCase() == 'high'} ? ' badge-high' : (${task.priority.toLowerCase() == 'medium'} ? ' badge-medium' : ' badge-low')">HIGH PRIORITY</span>
+                  </div>
+                  <div class="task-actions">
+                    <button type="submit" class="button button-secondary">Mark Complete</button>
+                  </div>
+                </form>
               </li>
             </ul>
           </div>
         </div>
       </section>
 
-      <section class="container" style="padding-top:2rem;">
+      <section class="container section-padding">
         <div class="form-card">
           <div class="form-card-header">
             <div>
@@ -111,39 +99,40 @@
             </div>
           </div>
 
-          <div class="field-grid" style="grid-template-columns:repeat(auto-fit, minmax(200px, 1fr)); gap:1.5rem; padding:1rem;">
+          <div class="field-grid grid-responsive card-padding">
             <div class="form-group">
-              <label style="font-weight:700; color:var(--color-primary);">Workload</label>
-              <p style="margin:0.5rem 0 0 0; font-size:1.1rem;">Medium</p>
+              <label class="label-em">Workload</label>
+              <p class="value-em" th:text="${workload}">Medium</p>
             </div>
 
             <div class="form-group">
-              <label style="font-weight:700; color:var(--color-primary);">Deadline Proximity</label>
-              <p style="margin:0.5rem 0 0 0; font-size:1.1rem; color:#ef4444;">High</p>
+              <label class="label-em">Deadline Proximity</label>
+              <p class="value-em value-alert" th:text="${deadlineProximity}">High</p>
             </div>
 
             <div class="form-group">
-              <label style="font-weight:700; color:var(--color-primary);">Overload Risk</label>
-              <p style="margin:0.5rem 0 0 0; font-size:1.1rem; color:#10b981;">Low</p>
+              <label class="label-em">Overload Risk</label>
+              <p class="value-em value-safe" th:text="${overloadRisk}">Low</p>
             </div>
           </div>
         </div>
       </section>
 
-      <section class="container" style="padding-top:2rem;">
-        <div class="form-card" style="border:2px solid var(--color-primary);">
+      <section class="container section-padding">
+        <div class="form-card card-highlight">
           <div class="form-card-header">
             <div>
-              <p class="eyebrow" style="color:var(--color-primary);">System Decision</p>
-              <h2 style="color:var(--color-primary);">Decision Panel</h2>
+              <p class="eyebrow highlight-text">System Decision</p>
+              <h2 class="highlight-text">Decision Panel</h2>
             </div>
           </div>
 
-          <div style="padding:1.5rem; background:rgba(59, 130, 246, 0.05); border-radius:12px; margin:1rem;">
-            <p style="margin:0; font-size:1.1rem; font-weight:600; color:var(--color-primary);">System Recommendation</p>
-            <p style="margin:1rem 0 0 0; font-size:1rem; color:#1e293b; line-height:1.6;">
-              Focus on <strong>DBMS today</strong> due to upcoming exams. This task has the highest impact on your academic progress. Delay low-priority tasks and concentrate your effort on mastering the key concepts before your internal examination.
-            </p>
+          <div class="decision-body">
+            <p class="rec-label">System Recommendation</p>
+            <p class="rec-text" th:text="${systemRecommendation}">Focus on <strong>DBMS today</strong> due to upcoming exams. This task has the highest impact on your academic progress. Delay low-priority tasks and concentrate your effort on mastering the key concepts before your internal examination.</p>
+            <ul class="rec-actions" th:if="${decisionActions}">
+              <li th:each="action : ${decisionActions}" th:text="${action}">Delay low-priority tasks</li>
+            </ul>
           </div>
         </div>
       </section>
@@ -157,23 +146,11 @@
             </div>
           </div>
 
-          <ul style="list-style:none; padding:1rem; margin:0; display:grid; gap:1rem;">
-            <li style="padding:1rem; background:#f8fafc; border-left:4px solid var(--color-primary); border-radius:8px;">
-              <strong style="color:var(--color-primary);">Plan Created</strong>
-              <p style="margin:0.5rem 0 0 0; font-size:0.9rem;">Semester Study Plan initiated with 12 tasks</p>
-              <small class="color-muted" style="display:block; margin-top:0.5rem;">5 days ago</small>
-            </li>
-
-            <li style="padding:1rem; background:#f8fafc; border-left:4px solid var(--color-primary); border-radius:8px;">
-              <strong style="color:var(--color-primary);">Task Updated</strong>
-              <p style="margin:0.5rem 0 0 0; font-size:0.9rem;">DBMS revision scheduled increased to 4 hours daily</p>
-              <small class="color-muted" style="display:block; margin-top:0.5rem;">2 days ago</small>
-            </li>
-
-            <li style="padding:1rem; background:#f8fafc; border-left:4px solid var(--color-primary); border-radius:8px;">
-              <strong style="color:var(--color-primary);">Progress Checked</strong>
-              <p style="margin:0.5rem 0 0 0; font-size:0.9rem;">Overall progress at 65% — 8 of 12 tasks completed</p>
-              <small class="color-muted" style="display:block; margin-top:0.5rem;">1 hour ago</small>
+          <ul class="activity-list" th:each="activity : ${recentActivities}">
+            <li class="activity-item">
+              <strong class="activity-title" th:text="${activity.title}">Plan Created</strong>
+              <p class="activity-desc" th:text="${activity.description}">Semester Study Plan initiated with 12 tasks</p>
+              <small class="color-muted activity-time" th:text="${activity.timeAgo}">5 days ago</small>
             </li>
           </ul>
         </div>
